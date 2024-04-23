@@ -1,4 +1,3 @@
-# Erasmus-app
 <h1>Erasmus-app</h1>
 <ul>
   <li>
