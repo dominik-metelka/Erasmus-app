@@ -1,0 +1,40 @@
+<?php
+$files = array_merge(glob("*.php"), glob("*.html")); // include both PHP and HTML files
+$ignore = ['navbar.php']; // exclude this file or any others you don't want in the navbar
+
+echo '<nav style="position: fixed; top: 0; width: 100%; background: #333; padding: 1em 0; z-index: 1000;">
+        <ul style="list-style: none; display: flex; justify-content: center; margin: 0; padding: 0;">';
+
+foreach ($files as $file) {
+    if (!in_array($file, $ignore)) {
+        $name = basename($file, pathinfo($file, PATHINFO_EXTENSION)); // remove extension
+        $text = ucfirst($name); // Capitalize the first letter
+        echo '<li style="margin: 0 15px;">
+                <a href="' . $file . '" style="color: white; text-decoration: none;">' . $text . '</a>
+              </li>';
+    }
+}
+
+echo '</ul></nav>';
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            padding-top: 60px; /* prevent content hiding under navbar */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <?php include 'navbar.php'; ?>
+
+    <div style="text-align: center;">
+        <h1>Welcome to the Home Page</h1>
+    </div>
+</body>
+</html>
